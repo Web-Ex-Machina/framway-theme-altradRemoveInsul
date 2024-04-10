@@ -282,3 +282,41 @@ textarea{padding: 1em 1.5em;}
 		legend{color: var(--primary); border-bottom: 1px solid rgba(color(greylight),0.8); padding-bottom: 0.5em; margin-bottom: 1em;}
 	}
 }
+
+
+
+// animate
+:root{
+	--animate-transition-duration: 1s;
+	--animate-transition-delay: 0s;
+}
+[class*=animate--]{transition: all 0s; transition-delay: 0s;
+	&.show{transition-duration: var(--animate-transition-duration); transition-delay: var(--animate-transition-delay);}
+}
+
+.animate--stackTransition{
+	>*:nth-child(2){--animate-transition-delay: 0.5s;}
+	>*:nth-child(3){--animate-transition-delay: 1s;}
+	>*:nth-child(4){--animate-transition-delay: 1.5s;}
+}
+
+.animate--slideFromLeft{transform: translateX(-100%);
+	&.show{transform: translateX(0);}
+}
+.animate--slideFromRight{transform: translateX(100%);
+	&.show{transform: translateX(0);}
+}
+.animate--slideFromTop{transform: translateY(-100%);
+	&.show{transform: translateY(0);}
+}
+.animate--slideFromBottom{transform: translateY(100%);
+	&.show{transform: translateY(0);}
+}
+.animate--fadeIn{ opacity: 0; filter: blur(5px);
+	&.show{opacity: 1;filter: blur(0px);}
+}
+
+
+@media(prefers-reduced-motion){
+	[class*=animate--]{transition: none;}
+}
