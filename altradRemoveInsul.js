@@ -28,18 +28,21 @@ $(function(){
 		var q1, q3, q4, q5, q6, q7, q8, q9;
 		var cf;
 		var form = $('form[data-form="form_rekentool"]').splitForm('get');
+		var r1_c = form.$el.find('.results .r1.countUpFW').countUpFW('get');
+		var r2_c = form.$el.find('.results .r2.countUpFW').countUpFW('get');
+		var r3_c = form.$el.find('.results .r3.countUpFW').countUpFW('get');
 
 		var processVars = function(){
 			return new Promise(function(resolve,reject){
 				q1  = cf.inputs.q1.value;
-				q2a = Number(cf.inputs.q2a.value);
-				q2b = Number(cf.inputs.q2b.value);
+				// q2a = Number(cf.inputs.q2a.value);
+				// q2b = Number(cf.inputs.q2b.value);
 				q3  = Number(cf.inputs.q3.value);
 				q4  = cf.inputs.q4.value;
 				q5  = Number(cf.inputs.q5.value);
 				q6  = Number(cf.inputs.q6.value);
 				q7  = Number(cf.inputs.q7.value);
-				q8  = Number(cf.inputs.q8.value);
+				// q8  = Number(cf.inputs.q8.value);
 				q9  = Number(cf.inputs.q9.value);
 				// console.log(q1,q3,q4,q5,q6,q7,q8,q9);
 
@@ -70,15 +73,15 @@ $(function(){
 			return new Promise(function(resolve,reject){
 				//step 1
 				if (q1=='outside') {
-					form.hideInput(form.$el.find('[name="q2a"]'),false);
-					form.hideInput(form.$el.find('[name="q2b"]'),true);
+					// form.hideInput(form.$el.find('[name="q2a"]'),false);
+					// form.hideInput(form.$el.find('[name="q2b"]'),true);
 					form.hideInput(form.$el.find('[name="q3"]'),false);
 				} else if(q1=='inside'){
-					form.hideInput(form.$el.find('[name="q2a"]'),true);
-					form.hideInput(form.$el.find('[name="q2b"]'),false);
+					// form.hideInput(form.$el.find('[name="q2a"]'),true);
+					// form.hideInput(form.$el.find('[name="q2b"]'),false);
 					form.hideInput(form.$el.find('[name="q3"]'),false);
 				}
-				form.$el.find('[name="q3"]').attr('min',s1).trigger('change');
+				// form.$el.find('[name="q3"]').attr('min',s1).trigger('change');
 
 				//step 3
 				if (q4=='cylinder') {
@@ -100,11 +103,19 @@ $(function(){
 				form.$el.find('[name="r2"]').val(Number(Number(r2).toFixed(2)));
 				form.$el.find('[name="r3"]').val(Number(Number(r3).toFixed(2)));
 				form.$el.find('[name="r4"]').val(Number(Number(r4).toFixed(2)));
-				form.$el.find('.results .r1 .value').html(Number(Number(r1).toFixed(2)));
-				form.$el.find('.results .r2 .value').html(Number(Number(r2).toFixed(2)));
-				form.$el.find('.results .r3 .value').html(Number(Number(r3).toFixed(2)));
-				form.$el.find('.results .r4 .value').html(Number(Number(r4).toFixed(2)));
-				if (q2a == 1 || q2b == 1 || q8 == 1) {
+				// form.$el.find('.results .r1 .value').html(Number(Number(r1).toFixed(2)));
+				// form.$el.find('.results .r2 .value').html(Number(Number(r2).toFixed(2)));
+				// form.$el.find('.results .r3 .value').html(Number(Number(r3).toFixed(2)));
+				// form.$el.find('.results .r4 .value').html(Number(Number(r4).toFixed(2)));
+				r1_c.anim.endVal = r1;
+				r2_c.anim.endVal = r2;
+				r3_c.anim.endVal = r3;
+				r1_c.anim.reset(); r1_c.anim.start();
+				r2_c.anim.reset(); r2_c.anim.start();
+				r3_c.anim.reset(); r3_c.anim.start();
+				
+				// if (q2a == 1 || q2b == 1 || q8 == 1) {
+				if (q3<s1 || q3>300 || q9>610) {
 					// form.hideInput(form.$el.find('[name="email"]'),false);
 					form.$el.find('.10b').removeClass('hidden');
 					form.$el.find('.results').addClass('hidden');
@@ -127,13 +138,14 @@ $(function(){
 		}
 
 		// form initial setup
+		form.$el.find('input,select,textarea').not('[name=email]').attr('required',true)
 		form.$el.find('[required]').attr('data-required',true);
 		form.$el.find('img[src*="[lang]"]').each(function(){
 			this.src = this.src.replace('[lang]',document.querySelector('html').getAttribute('lang'));
 		});
-		form.hideInput(form.$el.find('[name="q2a"]'));
-		form.hideInput(form.$el.find('[name="q2b"]'));
-		form.hideInput(form.$el.find('[name="q3"]'));
+		// form.hideInput(form.$el.find('[name="q2a"]'));
+		// form.hideInput(form.$el.find('[name="q2b"]'));
+		// form.hideInput(form.$el.find('[name="q3"]'));
 		form.hideInput(form.$el.find('[name="q5"]'));
 		form.hideInput(form.$el.find('[name="q6"]'));
 		form.hideInput(form.$el.find('[name="q7"]'));
@@ -146,29 +158,29 @@ $(function(){
 
 		// test run
 		// step 1
-		// form.$el.find('label#lbl_85_0').trigger('click')
-		// form.$el.find('label#lbl_86_1').trigger('click')
-		// form.$el.find('[name="q3"]').val('25').trigger('change');
-		// form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
+		form.$el.find('label#lbl_85_0').trigger('click')
+		form.$el.find('label#lbl_86_1').trigger('click')
+		form.$el.find('[name="q3"]').val('25').trigger('change');
+		form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
 
-		// // step2
-		// form.$el.find('label#lbl_90_0').trigger('click')
-		// // form.$el.find('label#lbl_90_1').trigger('click')
-		// form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
+		// step2
+		form.$el.find('label#lbl_90_0').trigger('click')
+		// form.$el.find('label#lbl_90_1').trigger('click')
+		form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
 
 		// // step3
-		// form.$el.find('[name="q5"]').val('25').trigger('change');
-		// form.$el.find('[name="q6"]').val('25').trigger('change');
-		// form.$el.find('label#lbl_123_0').trigger('click')
-		// form.$el.find('label#lbl_123_1').trigger('click')
-		// form.$el.find('[name="q9"]').val('25').trigger('change');
-		// form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
+		form.$el.find('[name="q5"]').val('25').trigger('change');
+		form.$el.find('[name="q6"]').val('25').trigger('change');
+		form.$el.find('label#lbl_123_0').trigger('click')
+		form.$el.find('label#lbl_123_1').trigger('click')
+		form.$el.find('[name="q9"]').val('610').trigger('change');
+		form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
 	}
 });
 
 const observer = new IntersectionObserver((entries)=>{
 	entries.forEach((entry)=>{
-		console.log(entry)
+		// console.log(entry)
 		if (entry.isIntersecting) {
 			entry.target.classList.add('show')
 		} else {

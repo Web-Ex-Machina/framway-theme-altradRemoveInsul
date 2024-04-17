@@ -214,15 +214,18 @@ textarea{padding: 1em 1.5em;}
 	}
 
 	.countUpFW{height: 100%; border-radius: 100%; font-size: 0.8em; display: flex;flex-direction: column; justify-content: center; position: relative;
-		.countUpFW__icon{font-size: 4em; margin-bottom: 1rem; position: absolute; inset: 0; margin: 0; display: flex; align-items: center; justify-content: center; z-index: 0; opacity: 0.1; 
-			svg{width: 65%; height: auto; aspect-ratio: 1/1;
-				// &.fa-cloud-sun{width: 60%;}
+		.countUpFW__icon{font-size: 4em; margin-bottom: 1rem; position: absolute; inset: 0; margin: 0; display: flex; align-items: center; justify-content: center; z-index: -1; opacity: 0.1; 
+			&.hasImg{opacity: 0.8;
+				img{width: 120%;height: 120%;object-fit: scale-down; max-width: none;}
 			}
+			svg{width: 65%; height: auto; aspect-ratio: 1/1; }
 			i[class*=fa]{font-size: 2em;}
 		}
 		.countUpFW__label{margin-top: 0; max-width: 15ch; margin-left: auto; margin-right: auto;}
 	}
 }
+
+.bg-leaves{background: var(--primary) url('/files/media/images/clipart-leaves-lighter-2.jpg'); background-size: cover; background-repeat: no-repeat; color: white;}
 
 .back-leaves,
 #home--mainContent--2{ 
@@ -232,16 +235,27 @@ textarea{padding: 1em 1.5em;}
 		background: url('/files/media/images/leavesbackground_md_min.png'); 
 		background-repeat: no-repeat; 
 		background-size: auto 200%; 
-		background-position: 30% center;
+		background-position: 80% center;
 	}
 	&:after{transform: rotate(180deg);}
 }
 .back-leaves{
 	&:after,&:before{ 
-		inset: 0 -20%;
+		inset: 0 -40%;
 		background-size: cover;
 	}
 }
+.back-leaves,
+#home--mainContent--2{
+	&:before{
+		background: url('/files/media/images/home/20240314/high-res-withoutleavesandtrees-grand.jpg');
+		background-size: cover;
+		background-position: center;
+		opacity: 0.5;
+	}
+	&:after{display: none;}
+}
+
 #home--video{position: relative; margin: 0;
 	>.img-container{position: absolute; inset: 0; z-index: -1;}
 }
@@ -276,14 +290,21 @@ textarea{padding: 1em 1.5em;}
 
 // inputs
 .form-group{margin-bottom: 1.5rem;
-	label{font-size: 1em; margin-bottom: 0.5em; text-indent: 0.25em;}
+	label{font-size: 1em; margin-bottom: 0.5em;}
+	%checkbox, %radio{
+		+label{ text-indent: 0.25em;}
+	}
 }
 
 .splitForm{
 	.hide{display: none;}
 	.results{
 		td.value{text-align: right; font-weight: bold; color: var(--primary);} 
+		.countUpFW{
+			img{height: 200px;}
+		}
 	}
+	.legal_notice{display: none;}
 } 
 .splitForm__section{
 	fieldset{
