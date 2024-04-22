@@ -29,8 +29,8 @@ $(function(){
 		var cf;
 		var form = $('form[data-form="form_rekentool"]').splitForm('get');
 		var r1_c = form.$el.find('.results .r1.countUpFW').countUpFW('get');
-		var r2_c = form.$el.find('.results .r2.countUpFW').countUpFW('get');
 		var r3_c = form.$el.find('.results .r3.countUpFW').countUpFW('get');
+		var r4_c = form.$el.find('.results .r4.countUpFW').countUpFW('get');
 
 		var processVars = function(){
 			return new Promise(function(resolve,reject){
@@ -108,14 +108,14 @@ $(function(){
 				// form.$el.find('.results .r3 .value').html(Number(Number(r3).toFixed(2)));
 				// form.$el.find('.results .r4 .value').html(Number(Number(r4).toFixed(2)));
 				r1_c.anim.endVal = r1;
-				r2_c.anim.endVal = r2;
 				r3_c.anim.endVal = r3;
+				r4_c.anim.endVal = r4;
 				r1_c.anim.reset(); r1_c.anim.start();
-				r2_c.anim.reset(); r2_c.anim.start();
 				r3_c.anim.reset(); r3_c.anim.start();
+				r4_c.anim.reset(); r4_c.anim.start();
 				
 				// if (q2a == 1 || q2b == 1 || q8 == 1) {
-				if (q3<s1 || q3>300 || q9>610) {
+				if (q3<s1 || q3>300 || q9<30 || q9>100) {
 					// form.hideInput(form.$el.find('[name="email"]'),false);
 					form.$el.find('.10b').removeClass('hidden');
 					form.$el.find('.results').addClass('hidden');
@@ -124,9 +124,9 @@ $(function(){
 					form.$el.find('.10b').addClass('hidden');
 					form.$el.find('.results').removeClass('hidden');
 				}
-				form.$el.find('.legal_notice').addClass('hidden');
+				form.$el.find('.legal_notice_2').addClass('hidden');
 				if (form.$sections.last().hasClass('active'))
-					form.$el.find('.legal_notice').removeClass('hidden');
+					form.$el.find('.legal_notice_2').removeClass('hidden');
 
 			    
 			    resolve();
@@ -149,7 +149,7 @@ $(function(){
 		form.hideInput(form.$el.find('[name="q5"]'));
 		form.hideInput(form.$el.find('[name="q6"]'));
 		form.hideInput(form.$el.find('[name="q7"]'));
-		form.$el.find('.legal_notice').addClass('hidden');
+		form.$el.find('.legal_notice_2').addClass('hidden');
 		form.$el.find('[name="q1"],[name="q4"]').on('change',updateForm);
 		form.onNext = updateForm;
 		form.onPrev = updateForm;
@@ -158,23 +158,23 @@ $(function(){
 
 		// test run
 		// step 1
-		form.$el.find('label#lbl_85_0').trigger('click')
-		form.$el.find('label#lbl_86_1').trigger('click')
-		form.$el.find('[name="q3"]').val('25').trigger('change');
-		form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
+		// form.$el.find('label#lbl_85_0').trigger('click')
+		// form.$el.find('[name="q3"]').val('25').trigger('change');
+		// form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
 
-		// step2
-		form.$el.find('label#lbl_90_0').trigger('click')
+		// // step2
+		// form.$el.find('label#lbl_90_0').trigger('click')
 		// form.$el.find('label#lbl_90_1').trigger('click')
-		form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
+		// form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
 
-		// // step3
-		form.$el.find('[name="q5"]').val('25').trigger('change');
-		form.$el.find('[name="q6"]').val('25').trigger('change');
-		form.$el.find('label#lbl_123_0').trigger('click')
-		form.$el.find('label#lbl_123_1').trigger('click')
-		form.$el.find('[name="q9"]').val('610').trigger('change');
-		form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
+		// // // step3
+		// form.$el.find('[name="q5"]').val('25').trigger('change');
+		// form.$el.find('[name="q6"]').val('25').trigger('change');
+		// form.$el.find('[name="q7"]').val('0.5').trigger('change');
+		// form.$el.find('label#lbl_123_0').trigger('click')
+		// form.$el.find('label#lbl_123_1').trigger('click')
+		// form.$el.find('[name="q9"]').val('50').trigger('change');
+		// form.$el.find('.splitForm__action[data-dir="next"]').trigger('click');
 	}
 });
 
