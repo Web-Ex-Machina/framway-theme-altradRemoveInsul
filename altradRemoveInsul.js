@@ -20,10 +20,10 @@ $(function(){
 
 	if ($('form[data-form="form_rekentool"]').length) {
 		var c1 = 8760;
-		var c2 = 0.08;
-		var c3 = 0.198;
+		var c2 = 0.10;
+		var c3 = 0.3;
 		var c4 = 25;
-		var c5 = 0.067;
+		var c5 = 0.05;
 		var s1, s2, v1, v2, v3, v4, v5, v6, v7, v8, v9, r1, r2, r3, r4;
 		var q1, q3, q4, q5, q6, q7, q8, q9;
 		var cf;
@@ -47,7 +47,7 @@ $(function(){
 				// console.log(q1,q3,q4,q5,q6,q7,q8,q9);
 
 				s1 = ('outside' === q1) ? 10 : 17;
-				s2 = ('outside' === q1) ? 50 : 5;
+				s2 = ('outside' === q1) ? 35 : 5;
 
 				v1 = ('cylinder' === q4) ? (1 / (s2 * Math.PI * (q5 / 1000))) : (1 / s2);
 				v2 = (q3 - s1) / v1;
