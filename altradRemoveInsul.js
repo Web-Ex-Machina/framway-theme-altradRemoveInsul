@@ -6,6 +6,26 @@ app.labels.buttons.prev.nl            = 'Vorige';
 app.labels.buttons.send.nl            = 'Versturen';
 app.labels.miscs.seeMore.nl           = 'Meer informatie';
 
+function forecast(x, ky, kx){
+   var i=0, nr=0, dr=0,ax=0,ay=0,a=0,b=0;
+   function average(ar) {
+          var r=0;
+      for (i=0;i<ar.length;i++){
+         r = r+ar[i];
+      }
+      return r/ar.length;
+   }
+   ax=average(kx);
+   ay=average(ky);
+   for (i=0;i<kx.length;i++){
+      nr = nr + ((kx[i]-ax) * (ky[i]-ay));
+      dr = dr + ((kx[i]-ax)*(kx[i]-ax))
+   }
+  b=nr/dr;
+  a=ay-b*ax;
+  return (a+b*x);
+}
+
 $(function(){
 	if ($('.modalFW[data-name="homeVideo"').length) {
 		var modalVideo = $('.modalFW[data-name="homeVideo"').modalFW('get');
@@ -38,6 +58,11 @@ $(function(){
 				// q2a = Number(cf.inputs.q2a.value);
 				// q2b = Number(cf.inputs.q2b.value);
 				q3  = Number(cf.inputs.q3.value);
+				c5  = forecast(q3,[0.035,0.043,0.049,0.056,0.066,0.090],[10,50,100,150,200,300])
+				if (c5<0.035) c5 = 0.035;
+				if (c5>0.090) c5 = 0.090;
+				// console.log(c5);
+
 				q4  = cf.inputs.q4.value;
 				q5  = Number(cf.inputs.q5.value);
 				q6  = Number(cf.inputs.q6.value);
