@@ -141,13 +141,13 @@ $(function(){
 				// powerLossRadiation
 				if (surface == "cylinder") {
 					powerLossRadiation = 0.9 * 5.67 * 10**(-8) * (((273 + temperature)**4) -((273 + tuit)**4)) * PI * (diameter / 1000);
-					powerLossTotalA = powerLossConvection + powerLossRadiation;
+					powerLossTotalA = (powerLossConvection + powerLossRadiation) * length;
 					r1 = Math.log((diameter + 2 * insulationThickness) / diameter) / (2 * PI * lambda);
 					r2 = 1 / (H * PI * (diameter / 1000));
 				}
 				else if (surface == "rectangular") {
-					powerLossRadiation = 0.6 * 5.67 * 10**(-8) * (((273 + temperature)**4) - ((273 + tuit)**4)) * area;
-					powerLossTotalA = powerLossConvection + powerLossRadiation;
+					powerLossRadiation = 0.6 * 5.67 * 10**(-8) * (((273 + temperature)**4) - ((273 + tuit)**4));
+					powerLossTotalA = (powerLossConvection + powerLossRadiation) * area;
 					r1 = insulationThickness / 1000 / lambda;
 					r2 = 1 / H;
 				}
